@@ -1,125 +1,115 @@
 import React from 'react';
-import { Search, FileText, Compass, Target, BookOpenIcon, Wallet, User, Lightbulb, ChartBar, ClipboardCheck, Heart, Handshake, DollarSign, TrendingUp, Scale, UserPlus, User2, Users, ChartBarIcon} from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle, } from '@/components/ui/card';
+import { motion } from 'framer-motion';
+import { 
+  Search, FileText, Compass, Target, BookOpen, Wallet, 
+  User, Lightbulb, ChartBar, ClipboardCheck, Heart, 
+  Handshake, DollarSign, TrendingUp, Scale, UserPlus, Users
+} from 'lucide-react';
 
 const Experience = () => {
-  const competenceCategories = [
-    {
-      title: 'Recrutement & Acquisition des Talents',
-      icon: Search,
-    },
-    {
-      title: 'Intégration, désintégration et engagement des employés',
-      icon: Compass,
-    },
-    {
-      title: 'Administration du personnel (contrat, congé, ...)',
-      icon: FileText,
-    },
-    {
-      title: 'Gestion de la rémunération et de la paie et des avantages sociaux',
-      icon: Wallet,
-    },
-    {
-      title: 'Formation, développement de programmes de Formation et Apprentissage',
-      icon: BookOpenIcon,
-    },
-    {
-      title: 'Gestion des performances',
-      icon: Target,
-    },
-    {
-      title: 'Gestion de la conformité, des risques et protection des stratégies RH',
-      icon: Scale,
-    },
-    {
-      title: 'Configuration, optimisation et analyse des données (HRIS)',
-      icon: ChartBarIcon,
-    },
-    {
-      title: 'Coaching et mentorat',
-      icon: Users,
-    },
-    {
-      title: 'Audits',
-      icon: ClipboardCheck,
-    },
-    {
-      title: 'Réalisation de projets RH',
-      icon: Lightbulb,
-
-    },
-    {
-      title: 'Bien être des employés et la protection contre les abus et exploitations',
-      icon: Heart,
-
-    },
-    {
-      title: 'Dialogue sociale',
-      icon: Handshake,
-
-    },
-    {
-      title: 'Gestion budget RH',
-      icon: DollarSign,
-
-    },
-    {
-      title: 'KPIs RH',
-      icon: TrendingUp,
-
-    }
+  const competences = [
+    { name: 'Recrutement & Acquisition', icon: UserPlus, color: 'bg-blue-100 text-blue-600' },
+    { name: 'Intégration & Engagement', icon: Compass, color: 'bg-indigo-100 text-indigo-600' },
+    { name: 'Administration du personnel', icon: FileText, color: 'bg-purple-100 text-purple-600' },
+    { name: 'Gestion de paie', icon: Wallet, color: 'bg-pink-100 text-pink-600' },
+    { name: 'Formation & Apprentissage', icon: BookOpen, color: 'bg-rose-100 text-rose-600' },
+    { name: 'Gestion des performances', icon: Target, color: 'bg-emerald-100 text-emerald-600' },
+    { name: 'Conformité & Risques', icon: Scale, color: 'bg-teal-100 text-teal-600' },
+    { name: 'Analyse données (HRIS)', icon: ChartBar, color: 'bg-sky-100 text-sky-600' },
+    { name: 'Coaching & Mentorat', icon: Users, color: 'bg-amber-100 text-amber-600' },
+    { name: 'Audits RH', icon: ClipboardCheck, color: 'bg-lime-100 text-lime-600' },
+    { name: 'Projets RH', icon: Lightbulb, color: 'bg-orange-100 text-orange-600' },
+    { name: 'Bien-être employés', icon: Heart, color: 'bg-red-100 text-red-600' },
+    { name: 'Dialogue sociale', icon: Handshake, color: 'bg-cyan-100 text-cyan-600' },
+    { name: 'Budget RH', icon: DollarSign, color: 'bg-green-100 text-green-600' },
+    { name: 'KPIs RH', icon: TrendingUp, color: 'bg-teal-100 text-teal-600' }
   ];
 
   return (
-    <section id="experience" className="py-20 bg-white">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Mes domaines d'expertise
+    <section id="experience" className="relative py-20 bg-gradient-to-b from-blue-50 to-white overflow-hidden">
+      {/* Background elements */}
+      <div className="absolute top-0 left-0 w-full h-full opacity-10">
+        <div className="absolute top-20 left-10 w-64 h-64 rounded-full bg-blue-200 blur-3xl"></div>
+        <div className="absolute bottom-10 right-10 w-80 h-80 rounded-full bg-indigo-200 blur-3xl"></div>
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            Mon Expertise RH
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Un aperçu de mes différents domaines dans lesquels je mets à profit
-            mon expertise RH pour accompagner les organisations tout au long du cycle de vie de leurs collaborateurs.
+            20 ans d'expérience transformés en solutions sur mesure pour vos défis RH
           </p>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {competenceCategories.map((category, index) => (
-            <Card 
-              key={index} 
-              className="group hover:shadow-xl transition-all duration-300 border-sky-blue-100 hover:border-sky-blue-300 hover:-translate-y-2"
-            >
-              <CardHeader className="text-center pb-4">
-                <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-sky-blue-100 to-sky-blue-200 rounded-full flex items-center justify-center group-hover:from-sky-blue-500 group-hover:to-sky-blue-600 transition-all duration-300">
-                  <category.icon className="w-8 h-8 text-sky-blue-600 group-hover:text-white transition-colors duration-300" />
-                </div>
-                <CardTitle className="text-xl font-semibold text-gray-900 group-hover:text-sky-blue-700 transition-colors">
-                  {category.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
+        </motion.div>
 
-              </CardContent>
-            </Card>
-          ))}
+        {/* Interactive grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+          {competences.map((item, idx) => {
+            const Icon = item.icon;
+            return (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: idx * 0.05 }}
+                viewport={{ once: true, margin: "-50px" }}
+                whileHover={{ y: -5, scale: 1.05 }}
+                className="flex flex-col items-center p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all cursor-pointer border border-gray-100"
+              >
+                <div className={`w-16 h-16 rounded-full flex items-center justify-center mb-4 ${item.color}`}>
+                  <Icon className="w-8 h-8" />
+                </div>
+                <h3 className="text-center font-medium text-gray-800">{item.name}</h3>
+              </motion.div>
+            );
+          })}
         </div>
-        
-        <div className="mt-16 text-center">
-          <div className="bg-gradient-to-br from-sky-blue-500 to-sky-blue-600 p-8 rounded-2xl text-white max-w-2xl mx-auto">
-            <h3 className="text-2xl font-semibold mb-4">En apprentissage constant</h3>
-            <p className="mb-6 opacity-90">
-              La technologie évolue rapidement, c'est pourquoi je me forme continuellement 
-              aux nouvelles technologies et meilleures pratiques du développement web.
+
+        {/* Animated callout */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          viewport={{ once: true }}
+          className="mt-20 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl p-8 text-white shadow-2xl"
+        >
+          <div className="max-w-4xl mx-auto text-center">
+            <h3 className="text-2xl md:text-3xl font-bold mb-4">Une approche humaine et stratégique</h3>
+            <p className="text-lg mb-6 opacity-90">
+              Je combine expertise technique et intelligence émotionnelle pour transformer vos défis RH en opportunités de croissance.
             </p>
-            <div className="flex flex-wrap justify-center gap-3">
-              <span className="px-4 py-2 bg-white/20 rounded-full text-sm font-medium">GraphQL</span>
-              <span className="px-4 py-2 bg-white/20 rounded-full text-sm font-medium">Three.js</span>
-              <span className="px-4 py-2 bg-white/20 rounded-full text-sm font-medium">Web3</span>
-              <span className="px-4 py-2 bg-white/20 rounded-full text-sm font-medium">AI/ML</span>
+            <div className="flex flex-wrap justify-center gap-4">
+              <motion.div 
+                whileHover={{ scale: 1.05 }}
+                className="px-6 py-3 bg-white/10 rounded-full backdrop-blur-sm flex items-center gap-2"
+              >
+                <ClipboardCheck className="w-5 h-5" />
+                <span>Conformité</span>
+              </motion.div>
+              <motion.div 
+                whileHover={{ scale: 1.05 }}
+                className="px-6 py-3 bg-white/10 rounded-full backdrop-blur-sm flex items-center gap-2"
+              >
+                <ChartBar className="w-5 h-5" />
+                <span>Performance</span>
+              </motion.div>
+              <motion.div 
+                whileHover={{ scale: 1.05 }}
+                className="px-6 py-3 bg-white/10 rounded-full backdrop-blur-sm flex items-center gap-2"
+              >
+                <Users className="w-5 h-5" />
+                <span>Engagement</span>
+              </motion.div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
