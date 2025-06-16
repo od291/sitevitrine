@@ -284,7 +284,7 @@ const Footer = () => {
               className="text-gray-400 text-sm"
               whileHover={{ scale: 1.02 }}
             >
-              Développé avec par Tantelison Odion
+              Site optimisé pour une expérience moderne
             </motion.p>
           </div>
         </motion.div>
