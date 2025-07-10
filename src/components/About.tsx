@@ -84,35 +84,48 @@ const About = () => {
             </motion.div>
 
             {/* Valeurs */}
-            <div className="grid grid-cols-2 gap-4">
-              {values.map((value, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  whileHover={{
-                    y: -3,
-                    boxShadow: "0 4px 6px -1px rgba(59, 130, 246, 0.1)",
-                  }}
-                  transition={{ delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="bg-white p-4 rounded-lg shadow-sm border border-blue-50 flex items-start gap-3"
-                >
+            <motion.div
+              whileHover={{
+                scale: 1.02,
+                boxShadow: "0 10px 25px -5px rgba(59, 130, 246, 0.2)",
+              }}
+              className="mt-6 p-6 bg-white rounded-lg shadow-md border border-blue-100 relative overflow-hidden"
+            >
+              <div className="absolute -right-6 -top-6 w-20 h-20 bg-blue-100 rounded-full opacity-10"></div>
+              <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2 relative">
+                <Shield className="text-blue-500" /> Mes Valeurs :
+              </h3>
+
+              <div className="grid grid-cols-2 gap-4">
+                {values.map((value, index) => (
                   <motion.div
-                    whileHover={{ rotate: 10 }}
-                    className="p-2 bg-blue-100 rounded-full text-blue-600"
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    whileHover={{
+                      y: -3,
+                      boxShadow: "0 4px 6px -1px rgba(59, 130, 246, 0.1)",
+                    }}
+                    transition={{ delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    className="bg-blue-50/50 p-3 rounded-lg border border-blue-100 flex items-start gap-3"
                   >
-                    <value.icon className="w-5 h-5" />
+                    <motion.div
+                      whileHover={{ rotate: 10 }}
+                      className="p-1.5 bg-blue-100 rounded-full text-blue-600"
+                    >
+                      <value.icon className="w-4 h-4" />
+                    </motion.div>
+                    <div>
+                      <h4 className="font-medium text-gray-900">
+                        {value.title}
+                      </h4>
+                      <p className="text-xs text-gray-600">{value.desc}</p>
+                    </div>
                   </motion.div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900">
-                      {value.title}
-                    </h4>
-                    <p className="text-sm text-gray-600">{value.desc}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+                ))}
+              </div>
+            </motion.div>
 
             {/* Statistiques */}
             <motion.div
