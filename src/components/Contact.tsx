@@ -89,7 +89,7 @@ const Contact = () => {
         formDataToSend.append("file", file);
       }
 
-      const response = await fetch("http://localhost:3000/api/send-email", {
+      const response = await fetch("https://backdavy.onrender.com/api/send-email", {
         method: "POST",
         body: formDataToSend,
       });
