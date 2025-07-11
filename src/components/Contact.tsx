@@ -2,13 +2,12 @@ import React, { useState } from "react";
 import {
   Mail,
   Phone,
-  MapPin,
-  Send,
   MessageCircle,
   Linkedin,
   Paperclip,
-  XCircle,
   CheckCircle2,
+  XCircle,
+  Send,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -79,16 +78,16 @@ const Contact = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    try {
-      const formDataToSend = new FormData();
-      formDataToSend.append("name", formData.name);
-      formDataToSend.append("email", formData.email);
-      formDataToSend.append("subject", formData.subject);
-      formDataToSend.append("message", formData.message);
-      if (file) {
-        formDataToSend.append("file", file);
-      }
+    const formDataToSend = new FormData();
+    formDataToSend.append("name", formData.name);
+    formDataToSend.append("email", formData.email);
+    formDataToSend.append("subject", formData.subject);
+    formDataToSend.append("message", formData.message);
+    if (file) {
+      formDataToSend.append("file", file);
+    }
 
+    try {
       const response = await fetch("https://backdavy.onrender.com/api/send-email", {
         method: "POST",
         body: formDataToSend,
@@ -101,12 +100,13 @@ const Contact = () => {
           title: (
             <div className="flex items-center gap-2">
               <CheckCircle2 className="h-5 w-5 text-green-500" />
-              <span>Message envoyé!</span>
+              <span>Message envoyé avec succès!</span>
             </div>
           ),
-          description: "Votre message a été envoyé avec succès.",
+          description: "Je vous répondrai dans les plus brefs délais.",
           variant: "default",
         });
+
         setFormData({
           name: "",
           email: "",
@@ -115,29 +115,18 @@ const Contact = () => {
         });
         setFile(null);
       } else {
-        toast({
-          title: (
-            <div className="flex items-center gap-2">
-              <XCircle className="h-5 w-5 text-red-500" />
-              <span>Erreur</span>
-            </div>
-          ),
-          description:
-            data.message ||
-            "Une erreur s'est produite lors de l'envoi du message.",
-          variant: "destructive",
-        });
+        throw new Error(data.message || "Erreur lors de l'envoi du message");
       }
     } catch (error) {
-      console.error("Error:", error);
       toast({
         title: (
           <div className="flex items-center gap-2">
             <XCircle className="h-5 w-5 text-red-500" />
-            <span>Erreur</span>
+            <span>Erreur lors de l'envoi</span>
           </div>
         ),
-        description: "Une erreur s'est produite lors de l'envoi du message.",
+        description:
+          error instanceof Error ? error.message : "Une erreur inconnue est survenue",
         variant: "destructive",
       });
     } finally {
@@ -295,7 +284,6 @@ const Contact = () => {
                       required
                     />
 
-                    {/* Champ fichier */}
                     <div className="flex items-center">
                       <label className="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 cursor-pointer">
                         <Paperclip className="w-5 h-5 mr-2 text-gray-500" />
